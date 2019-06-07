@@ -2,9 +2,8 @@
 FROM wordpress:5.2.1-php7.3-apache
 
 EXPOSE 8080
-# apache conf
-COPY apache/ports.conf /etc/apache2/ports.conf
-COPY apache/000-default.conf  /etc/apache2/sites-available/000-default.conf
+# Use the PORT environment variable in Apache configuration files.
+RUN sed -i 's/80/${PORT}/g' /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf
 # wordpress conf
 COPY wordpress/wp-config.php /var/www/html/wp-config.php
 
