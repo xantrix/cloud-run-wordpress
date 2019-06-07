@@ -15,5 +15,5 @@ RUN apt-get update && apt-get install net-tools wget && \
 # custom entrypoint
 COPY wordpress/cloud-run-entrypoint.sh /usr/local/bin/
 
-ENTRYPOINT ["cloud-run-entrypoint.sh"]
+ENTRYPOINT ["cloud-run-entrypoint.sh","docker-entrypoint.sh"]
 CMD ["apache2-foreground"]
